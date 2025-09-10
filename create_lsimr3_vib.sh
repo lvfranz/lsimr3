@@ -58,9 +58,13 @@ cp ${LSIMR3_REPO_DIR}/lsi_mr3.ids ${VIB_PAYLOAD_DIR}/usr/share/hwdata/default.pc
 cp ${LSIMR3_REPO_DIR}/descriptor.xml ${LSIMR3_TEMP_DIR}
 cp ${LSIMR3_REPO_DIR}/sig.pkcs7 ${LSIMR3_TEMP_DIR}
 
+#echo "LSIMR3_TEMP_DIR"
+#ls -lahR ${LSIMR3_TEMP_DIR}
+#echo "LSIMR3_PAYLOAD_DIR"
+#ls -lahR ${VIB_PAYLOAD_DIR}
 
 # Create tgz with payload
-tar czf ${LSIMR3_TEMP_DIR}/payload1 -C ${VIB_PAYLOAD_DIR} opt
+tar czf ${LSIMR3_TEMP_DIR}/payload1 -C ${VIB_PAYLOAD_DIR} .
 
 # Calculate payload size/hash
 PAYLOAD_FILES=$(tar tf ${LSIMR3_TEMP_DIR}/payload1 | grep -v -E '/$' | sed -e 's/^/    <file>/' -e 's/$/<\/file>/')
